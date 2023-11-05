@@ -1,0 +1,17 @@
+{
+  "name": "argonix-jobs",
+  "version": "1.0.0",
+  "description": "Job runner built with argo and nix",
+  "main": "reconcile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "reconcile": "reconcile.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}
