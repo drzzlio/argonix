@@ -16,9 +16,12 @@ spec:
   # Error output will be sent to the UI, so avoid printing sensitive information (such as secrets).
   generate:
     # Run the argonix job reconciler
-    command: [nix, run]
+    command: [nix]
     args:
-      - /argonix-jobs/#reconcile
+      - --extra-experimental-features
+      - nix-command flakes
+      - run
+      - github:drzzlio/argonix?dir=cmp#reconcile
   # The discovery config is applied to a repository. If every configured discovery tool matches, then the plugin may be
   # used to generate manifests for Applications using the repository. If the discovery config is omitted then the plugin 
   # will not match any application but can still be invoked explicitly by specifying the plugin name in the app spec. 
