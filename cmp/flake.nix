@@ -69,28 +69,37 @@
       in
       {
         packages.reconcile = package;
+        packages.image = pkgs.dockerTools.buildLayeredImage {
+          name = "argonix-jobs";
+          contents = [
+            pkgs.git
+          ];
+          config = {
+            Cmd = ["${package}/bin/reconcile"];
+          };
+        };
 
         devenv.shells.default = shell;
 
         # Shell to run Job reconciliation logic in CMP
         devenv.shells.jobrecon = pkgs.lib.mkMerge [
           shell
-          ({
+          {
             packages = [
               pkgs.git
               package
             ];
-          })
+          }
         ];
 
         # argonix-jobs runtime shell
         devenv.shells.ci = pkgs.lib.mkMerge [
           shell
-          ({
+          {
             scripts.ci.exec = ''
               echo hello
             '';
-          })
+          }
         ];
 
       };
